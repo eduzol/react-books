@@ -1,7 +1,7 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import BookGrid from './BookGrid'
-import './App.css'
+import React from 'react';
+import * as BooksAPI from './BooksAPI';
+import BookShelf from './BookShelf';
+import './App.css';
 
 class BooksApp extends React.Component {
   state = {
@@ -12,7 +12,9 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: true, 
-    currentlyReadingBooks : []
+    currentlyReadingBooks : [], 
+    wantToReadBooks : [], 
+    readBooks : []
   }
 
   componentDidMount(){
@@ -70,24 +72,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <BookGrid data={this.state.currentlyReadingBooks} />
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                    <BookGrid data={this.state.wantToReadBooks} />
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                   <BookGrid data={this.state.readBooks} />
-                  </div>
-                </div>
+                <BookShelf title="Currently Reading" data={this.state.currentlyReadingBooks} />
+                <BookShelf title="Want to Read" data={this.state.wantToReadBooks} />
+                <BookShelf title="Read" data={this.state.readBooks} />
               </div>
             </div>
             <div className="open-search">
