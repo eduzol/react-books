@@ -11,7 +11,12 @@ class BookGrid extends Component {
             <ol className="books-grid">
                 {books.map( ( book ) => 
                     <li key={book.id}>
-                        <Book author={book.authors.join(', ')} title={book.title} coverUrl={book.imageLinks.thumbnail}  />
+                        <Book author={book.authors.join(', ')} 
+                            title={book.title} 
+                            coverUrl={book.imageLinks.thumbnail} 
+                            id={book.id}
+                            onUpdate={this.props.onUpdate}
+                        />
                     </li>
                 ) }
             </ol>    
