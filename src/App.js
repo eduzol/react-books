@@ -3,6 +3,7 @@ import * as BooksAPI from './BooksAPI';
 import BookShelf from './BookShelf';
 import { Route } from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import BookGrid from './BookGrid';
 import './App.css';
 
 class BooksApp extends React.Component {
@@ -27,6 +28,7 @@ class BooksApp extends React.Component {
                      wantToReadBooks : wantToRead , 
                      readBooks : read });
     });
+    this.search('iOS');
   }
 
   updateBook = ( bookId , shelf  ) => {
@@ -66,7 +68,7 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <BookGrid data={this.state.searchedBooks} onUpdate={this.updateBook} />
             </div>
           </div>
         )}/>
