@@ -9,9 +9,9 @@ class Book extends Component{
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: 'url('+this.props.coverUrl+')' }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: 'url('+this.props.book.imageLinks.thumbnail+')' }}></div>
                     <div className="book-shelf-changer">
-                        <select onChange={(e) => this.props.onUpdate('book', 'e.target.value')} >
+                        <select defaultValue={this.props.book.shelf}  onChange={(e) => this.props.onUpdate(this.props.book.id, e.target.value)} >
                             <option value="none" disabled>Move to...</option>
                             <option value="currentlyReading" > Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
@@ -20,8 +20,8 @@ class Book extends Component{
                         </select>
                     </div>
                 </div>
-                <div className="book-title" onClick={ ()=> this.props.onUpdate('111', 'currentlyReading')}>{this.props.title}</div>
-                <div className="book-authors">{this.props.author}</div>
+                <div className="book-title">{this.props.book.title}</div>
+                <div className="book-authors">{this.props.book.authors.join(', ')}</div>
             </div>
         );
     }

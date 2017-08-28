@@ -24,11 +24,11 @@ class BooksApp extends React.Component {
       this.setState({currentlyReadingBooks : data } );
     });
     */
-    /*
-    BooksAPI.update ('nggnmAEACAAJ',   'wantToRead').then((data) =>{
-      console.log('update ' , data);
-    });
-    */
+    this.init();
+   
+  }
+  
+  init() {
     BooksAPI.getAll().then((data) => {
       console.log('all ' , data);
       var currentlyReading = data.filter( (book) => book.shelf === 'currentlyReading' );
@@ -38,11 +38,14 @@ class BooksApp extends React.Component {
                      wantToReadBooks : wantToRead , 
                      readBooks : read });
     });
-    
   }
 
   updateBook = ( bookId , shelf  ) => {
-    console.log('updating book ' + bookId + " to shlef " + shelf  );
+    console.log('updating book ' + bookId + " to shelf " + shelf  );
+    BooksAPI.update ( {id:bookId } ,   shelf).then((data) =>{
+      console.log('data ', data);
+      this.init();
+    });
   }
 
   render() {
