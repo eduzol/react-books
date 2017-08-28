@@ -30,7 +30,7 @@ class BooksApp extends React.Component {
     });
     */
     BooksAPI.getAll().then((data) => {
-      console.log('all ' , data);
+      
       var currentlyReading = data.filter( (book) => book.shelf === 'currentlyReading' );
       var wantToRead =data.filter( (book) => book.shelf === 'wantToRead' );
       var read =data.filter( (book) => book.shelf === 'read' );
