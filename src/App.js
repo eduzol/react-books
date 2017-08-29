@@ -20,7 +20,7 @@ class BooksApp extends React.Component {
   
   init() {
     BooksAPI.getAll().then((data) => {
-      console.log('all ' , data);
+     
       var currentlyReading = data.filter( (book) => book.shelf === 'currentlyReading' );
       var wantToRead =data.filter( (book) => book.shelf === 'wantToRead' );
       var read =data.filter( (book) => book.shelf === 'read' );
@@ -28,13 +28,11 @@ class BooksApp extends React.Component {
                      wantToReadBooks : wantToRead , 
                      readBooks : read });
     });
-    this.search('iOS');
   }
 
   updateBook = ( bookId , shelf  ) => {
-    console.log('updating book ' + bookId + " to shelf " + shelf  );
+    
     BooksAPI.update ( {id:bookId } ,   shelf).then((data) =>{
-      console.log('data ', data);
       this.init();
     });
   }
@@ -42,7 +40,6 @@ class BooksApp extends React.Component {
   search = ( searchTerm ) => {
     
     BooksAPI.search(searchTerm , 3).then((data) => {
-      console.log('data ' , data );
       this.setState({searchedBooks : data } );
     });
   }
