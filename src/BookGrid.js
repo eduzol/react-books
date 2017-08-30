@@ -9,14 +9,14 @@ class BookGrid extends Component {
         return (
         <div className="books-grid-container">
             <ol className="books-grid">
-                {books.map( ( book ) => 
+                {Array.isArray(books) ? books.map( ( book ) => 
                     <li key={book.id}>
                         <Book 
                             book={book}
                             onUpdate={this.props.onUpdate}
                         />
                     </li>
-                ) }
+                ): <div> No books found </div> }
             </ol>    
         </div>
         );
